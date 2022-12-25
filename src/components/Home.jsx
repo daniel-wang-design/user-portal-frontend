@@ -6,6 +6,10 @@ const Home = () => {
     <div className="wrapper">
       <div className="container mt-4">
         <h3>Welcome to FOCUS Youth's User Portal</h3>
+        <p className="text-danger">
+          Please use a computer and a Chrome browser when accessing the portal.
+          There are known issues with mobile/Safari browsers.{" "}
+        </p>
         <p>
           This is the portal used to track your volunteer hours. Additionally,
           you can see a list of all active FOCUS Youth Members to verify a
