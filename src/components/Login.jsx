@@ -43,7 +43,10 @@ const Login = () => {
     console.log(user);
     setLoading(true);
     try {
-      const response = await axios.post("https://user-portal.herokuapp.com/login/", user);
+      const response = await axios.post(
+        "https://user-portal.herokuapp.com/login/",
+        user
+      );
       setSuccessLogin("good");
       console.log(response.data);
       signIn({
@@ -60,7 +63,7 @@ const Login = () => {
     window.location.href = "/";
   };
 
-  const handleSubmitRegister = (e) => {
+  const handleSubmitRegister = async (e) => {
     e.preventDefault();
     const validRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -87,7 +90,7 @@ const Login = () => {
       role: document.getElementById("role-select").value,
     };
     console.log(user);
-    axios
+    await axios
       .post("https://user-portal.herokuapp.com/users/add", user)
       .then((res) => {
         if (res.status === 200) {
