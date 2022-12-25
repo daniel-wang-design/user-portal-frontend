@@ -22,7 +22,7 @@ const Navbar = () => {
         const raw = Cookies.get("auth_state").toString();
         const length = raw.length;
         const id = raw.substring(1, length - 1);
-        const user = await axios.get("http://localhost:5000/users/" + id);
+        const user = await axios.get("https://user-portal.herokuapp.com/users/" + id);
         setName(user.data.name);
       } catch (e) {
         console.log("Something went wrong...", e.message);

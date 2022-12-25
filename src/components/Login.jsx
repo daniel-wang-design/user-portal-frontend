@@ -43,7 +43,7 @@ const Login = () => {
     console.log(user);
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/login/", user);
+      const response = await axios.post("https://user-portal.herokuapp.com/login/", user);
       setSuccessLogin("good");
       console.log(response.data);
       signIn({
@@ -88,7 +88,7 @@ const Login = () => {
     };
     console.log(user);
     axios
-      .post("http://localhost:5000/users/add", user)
+      .post("https://user-portal.herokuapp.com/users/add", user)
       .then((res) => {
         if (res.status === 200) {
           setSuccessfulCreate(false);

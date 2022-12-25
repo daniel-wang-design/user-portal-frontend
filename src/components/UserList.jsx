@@ -15,12 +15,12 @@ const UserList = () => {
     const id = raw.substring(1, length - 1);
     async function getUsers() {
       try {
-        const user = await axios.get("http://localhost:5000/users/" + id);
+        const user = await axios.get("https://user-portal.herokuapp.com/users/" + id);
         console.log(user);
         if (user.data.role === "Admin") {
           setPermissions(true);
         }
-        const usersList = await axios.get("http://localhost:5000/users/");
+        const usersList = await axios.get("https://user-portal.herokuapp.com/users/");
         setUsers([]);
         usersList.data.map((user) => setUsers((arr) => [...arr, user]));
         console.log(users);
@@ -37,12 +37,12 @@ const UserList = () => {
     const id = raw.substring(1, length - 1);
     async function getUsers() {
       try {
-        const user = await axios.get("http://localhost:5000/users/" + id);
+        const user = await axios.get("https://user-portal.herokuapp.com/users/" + id);
         setPermissions(false);
         if (user.data.role === "Admin") {
           setPermissions(true);
         }
-        const usersList = await axios.get("http://localhost:5000/users/");
+        const usersList = await axios.get("https://user-portal.herokuapp.com/users/");
         setUsers([]);
         usersList.data.map((user) => setUsers((arr) => [...arr, user]));
         console.log(users);
@@ -54,7 +54,7 @@ const UserList = () => {
   }
   async function deleteUser(id) {
     await axios
-      .delete("http://localhost:5000/users/delete/" + id)
+      .delete("https://user-portal.herokuapp.com/users/delete/" + id)
       .then((res) => console.log(res.data));
     refresh();
   }

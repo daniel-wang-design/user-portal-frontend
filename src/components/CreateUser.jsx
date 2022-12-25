@@ -21,7 +21,7 @@ const CreateUser = () => {
     const id = raw.substring(1, length - 1);
     async function getUser() {
       try {
-        const user = await axios.get("http://localhost:5000/users/" + id);
+        const user = await axios.get("https://user-portal.herokuapp.com/users/" + id);
         if (user.data.role === "Admin") {
           setPermissions(true);
         }
@@ -43,7 +43,7 @@ const CreateUser = () => {
     };
     console.log(user);
     await axios
-      .post("http://localhost:5000/users/add", user)
+      .post("https://user-portal.herokuapp.com/users/add", user)
       .then((res) => {
         if (res.status === 200) {
           setShowUser(true);
@@ -58,11 +58,11 @@ const CreateUser = () => {
       });
     try {
       const response = await axios.get(
-        "http://localhost:5000/users/findByEmail/" + email
+        "https://user-portal.herokuapp.com/users/findByEmail/" + email
       );
       console.log(response.data._id);
       axios
-        .post("http://localhost:5000/volunteer/add", {
+        .post("https://user-portal.herokuapp.com/volunteer/add", {
           userID: response.data._id,
           volunteerRecord: [],
         })

@@ -13,7 +13,7 @@ const UpdateUser = () => {
   const [status, setStatus] = useState("none");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/users/" + id.id).then((res) => {
+    axios.get("https://user-portal.herokuapp.com/users/" + id.id).then((res) => {
       setName(res.data.name);
       setRole(res.data.role);
       setEmail(res.data.email);
@@ -34,7 +34,7 @@ const UpdateUser = () => {
     console.log(user);
 
     axios
-      .post("http://localhost:5000/users/update/" + id.id, user)
+      .post("https://user-portal.herokuapp.com/users/update/" + id.id, user)
       .then((res) => {
         if (res.status === 200) {
           setStatus("good");

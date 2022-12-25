@@ -24,19 +24,19 @@ const AdminHours = () => {
     async function getHours() {
       try {
         const verify = await axios.get(
-          "http://localhost:5000/users/" + viewerID
+          "https://user-portal.herokuapp.com/users/" + viewerID
         );
         if (verify.data.role === "Admin") {
           setPermissions(true);
         }
         const getName = await axios.get(
-          "http://localhost:5000/users/" + userID
+          "https://user-portal.herokuapp.com/users/" + userID
         );
         setName(getName.data.name);
         setEmail(getName.data.email);
         setRole(getName.data.role);
         const hoursList = await axios.get(
-          "http://localhost:5000/volunteer/get/" + userID
+          "https://user-portal.herokuapp.com/volunteer/get/" + userID
         );
         setHours([]);
         const temp = [];
@@ -75,19 +75,19 @@ const AdminHours = () => {
     async function getHours() {
       try {
         const verify = await axios.get(
-          "http://localhost:5000/users/" + viewerID
+          "https://user-portal.herokuapp.com/users/" + viewerID
         );
         if (verify.data.role === "Admin") {
           setPermissions(true);
         }
         const getName = await axios.get(
-          "http://localhost:5000/users/" + userID
+          "https://user-portal.herokuapp.com/users/" + userID
         );
         setName(getName.data.name);
         setEmail(getName.data.email);
         setRole(getName.data.role);
         const hoursList = await axios.get(
-          "http://localhost:5000/volunteer/get/" + userID
+          "https://user-portal.herokuapp.com/volunteer/get/" + userID
         );
         setHours([]);
         const temp = [];
@@ -114,7 +114,7 @@ const AdminHours = () => {
       const raw = Cookies.get("auth_state").toString();
       const length = raw.length;
       const userID = raw.substring(1, length - 1);
-      const getAdmin = await axios.get("http://localhost:5000/users/" + userID);
+      const getAdmin = await axios.get("https://user-portal.herokuapp.com/users/" + userID);
       const newItem = {
         description: item.description,
         date: item.date,
@@ -124,7 +124,7 @@ const AdminHours = () => {
         approvedBy: getAdmin.data.name,
       };
       axios
-        .post("http://localhost:5000/volunteer/edit", newItem)
+        .post("https://user-portal.herokuapp.com/volunteer/edit", newItem)
         .then((res) => {
           console.log(res);
         })
@@ -141,7 +141,7 @@ const AdminHours = () => {
       const raw = Cookies.get("auth_state").toString();
       const length = raw.length;
       const userID = raw.substring(1, length - 1);
-      const getAdmin = await axios.get("http://localhost:5000/users/" + userID);
+      const getAdmin = await axios.get("https://user-portal.herokuapp.com/users/" + userID);
       const newItem = {
         description: item.description,
         date: item.date,
@@ -151,7 +151,7 @@ const AdminHours = () => {
         approvedBy: "x",
       };
       axios
-        .post("http://localhost:5000/volunteer/edit", newItem)
+        .post("https://user-portal.herokuapp.com/volunteer/edit", newItem)
         .then((res) => {
           console.log(res);
         })

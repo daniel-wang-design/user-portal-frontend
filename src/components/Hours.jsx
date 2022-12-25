@@ -16,7 +16,7 @@ const Hours = () => {
     async function getHours() {
       try {
         const hoursList = await axios.get(
-          "http://localhost:5000/volunteer/get/" + id
+          "https://user-portal.herokuapp.com/volunteer/get/" + id
         );
         setHours([]);
         const temp = [];
@@ -44,12 +44,12 @@ const Hours = () => {
     const id = raw.substring(1, length - 1);
     async function getHours() {
       try {
-        const user = await axios.get("http://localhost:5000/users/" + id);
+        const user = await axios.get("https://user-portal.herokuapp.com/users/" + id);
         if (user.data.role === "Admin") {
           setPermissions(true);
         }
         const hoursList = await axios.get(
-          "http://localhost:5000/volunteer/get/" + id
+          "https://user-portal.herokuapp.com/volunteer/get/" + id
         );
         setHours([]);
         const temp = [];
@@ -79,7 +79,7 @@ const Hours = () => {
       _id: id,
     };
     await axios
-      .post("http://localhost:5000/volunteer/delete", item)
+      .post("https://user-portal.herokuapp.com/volunteer/delete", item)
       .then((res) => console.log(res.data));
     refresh();
   }

@@ -70,7 +70,7 @@ const CreateUser = () => {
       userID: userID,
     };
     axios
-      .post("http://localhost:5000/volunteer/addItem", newItem)
+      .post("https://user-portal.herokuapp.com/volunteer/addItem", newItem)
       .then((res) => {
         if (res.status === 200) {
           setStatus("good");

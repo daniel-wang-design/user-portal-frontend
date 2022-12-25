@@ -23,7 +23,7 @@ const UpdateVolunteerHour = () => {
     async function getItem() {
       try {
         const url =
-          "http://localhost:5000/volunteer/getItem/" + userID + "/" + itemID.id;
+          "https://user-portal.herokuapp.com/volunteer/getItem/" + userID + "/" + itemID.id;
         console.log(url);
         const item = await axios.get(url);
         setDescription(item.data.description);
@@ -94,7 +94,7 @@ const UpdateVolunteerHour = () => {
       approvedBy: approvedBy,
     };
     axios
-      .post("http://localhost:5000/volunteer/edit", newItem)
+      .post("https://user-portal.herokuapp.com/volunteer/edit", newItem)
       .then((res) => {
         if (res.status === 200) {
           setStatus("good");
