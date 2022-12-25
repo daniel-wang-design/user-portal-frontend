@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import "./Login.css";
 import axios from "axios";
 import { useSignIn } from "react-auth-kit";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [authMode, setAuthMode] = useState("signin");
@@ -14,6 +15,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [successfulCreate, setSuccessfulCreate] = useState(false);
   const [succesLogin, setSuccessLogin] = useState("none");
+  const [forgot, setForgot] = useState(false);
+
   const signIn = useSignIn();
   const changeAuthMode = () => {
     setValidEmail(true);
@@ -118,7 +121,9 @@ const Login = () => {
     console.log(user);
     window.location.href = "/login";
   };
-
+  const clicked = () => {
+    setForgot(true);
+  };
   if (authMode === "signin") {
     return (
       <div className="wrapper">
@@ -178,7 +183,13 @@ const Login = () => {
                 </p>
               </div>
               <p className="text-center mt-2">
-                Forgot <a href="#">password?</a>
+                <span className="link-primary" onClick={clicked}>
+                  Forgot password
+                </span>
+              </p>
+              <p className="text-danger" hidden={!forgot}>
+                Please email{" "}
+                <a href="mailto:hr@focusyouth.ca">hr@focusyouth.ca</a>{" "}
               </p>
             </div>
           </form>
@@ -188,7 +199,6 @@ const Login = () => {
   }
   // sign up form
 
-  // CREATE FORM VALIDATION FOR MAKING NEW USER
   return (
     <div className="Auth-form-container">
       <form className="Auth-form">
