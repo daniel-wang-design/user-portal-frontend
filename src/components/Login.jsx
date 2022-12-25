@@ -100,6 +100,21 @@ const Login = () => {
         }
       })
       .catch((err) => setSuccessfulCreate(true));
+    try {
+      const response = await axios.get(
+        "https://user-portal.herokuapp.com/users/findByEmail/" + email
+      );
+      console.log(response.data._id);
+      axios
+        .post("https://user-portal.herokuapp.com/volunteer/add", {
+          userID: response.data._id,
+          volunteerRecord: [],
+        })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    } catch (e) {
+      console.log(e.message);
+    }
     console.log(user);
     window.location.href = "/login";
   };
