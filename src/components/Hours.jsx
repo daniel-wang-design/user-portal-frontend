@@ -44,7 +44,9 @@ const Hours = () => {
     const id = raw.substring(1, length - 1);
     async function getHours() {
       try {
-        const user = await axios.get("https://user-portal.herokuapp.com/users/" + id);
+        const user = await axios.get(
+          "https://user-portal.herokuapp.com/users/" + id
+        );
         if (user.data.role === "Admin") {
           setPermissions(true);
         }
@@ -103,7 +105,12 @@ const Hours = () => {
   if (hours.length === 0) {
     return (
       <div className="container">
-        <h1>Loading...</h1>
+        <h3>My Volunteer Hours</h3>
+        <Link to="/newVolunteer">
+          <button type="button" className="btn btn-primary">
+            Add New Volunteer Record
+          </button>
+        </Link>
       </div>
     );
   }
