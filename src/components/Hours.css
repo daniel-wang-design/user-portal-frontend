@@ -1,0 +1,11 @@
+.wrapper {
+    overflow: scroll;
+    height: 100vh;
+  }
+  
+  hr {
+    border: none;
+    height: 5px;
+    color: #333; 
+    background-color: #333; 
+  }
