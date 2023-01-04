@@ -16,6 +16,7 @@ const Login = () => {
   const [successfulCreate, setSuccessfulCreate] = useState(false);
   const [succesLogin, setSuccessLogin] = useState("none");
   const [forgot, setForgot] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const signIn = useSignIn();
   const changeAuthMode = () => {
@@ -152,11 +153,25 @@ const Login = () => {
               <div className="form-group mt-3">
                 <label>Password</label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   className="form-control mt-1"
                   placeholder="Enter password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                <div className="mt-1">
+                  <span
+                    className="link-primary"
+                    onClick={() => {
+                      if (showPassword) {
+                        setShowPassword(false);
+                      } else {
+                        setShowPassword(true);
+                      }
+                    }}
+                  >
+                    {showPassword ? "HIde Password" : "Show Password"}{" "}
+                  </span>
+                </div>
                 <p className="text-danger" hidden={validPassword}>
                   Please enter a password
                 </p>
