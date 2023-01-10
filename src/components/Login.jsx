@@ -17,12 +17,15 @@ const Login = () => {
   const [succesLogin, setSuccessLogin] = useState("none");
   const [forgot, setForgot] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [authCode, setAuthCode] = useState(false);
+  const [code, setCode] = useState("");
 
   const signIn = useSignIn();
   const changeAuthMode = () => {
     setValidEmail(true);
     setValidName(true);
     setValidPassword(true);
+    setAuthCode(true);
     setAuthMode(authMode === "signin" ? "signup" : "signin");
   };
 
@@ -84,6 +87,19 @@ const Login = () => {
     }
     if (password.length < 8) {
       setValidPassword(false);
+      return;
+    }
+    try {
+      setAuthCode(true);
+      const response = await axios.get(
+        "https://user-portal.herokuapp.com/users/63bddd67863a0d82a98f99f5"
+      );
+      if (code !== response.data.password) {
+        setAuthCode(false);
+        return;
+      }
+    } catch (e) {
+      setAuthCode(false);
       return;
     }
 
@@ -272,6 +288,18 @@ const Login = () => {
               <option value="Tutor">Tutor</option>
               <option value="Executive">Executive</option>
             </select>
+          </div>
+          <div className="form-group mt-3">
+            <label>Access Code</label>
+            <input
+              type="string"
+              className="form-control mt-1"
+              placeholder="Check your @focusyouth.ca email"
+              onChange={(e) => setCode(e.target.value)}
+            />
+            <p className="text-danger" hidden={authCode}>
+              Please enter the correct access code
+            </p>
           </div>
           <div className="d-grid gap-2 mt-3">
             <button
